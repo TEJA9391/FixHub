@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register as Technician - FixHub</title>
+    <link rel="stylesheet" href="mainpage.css">
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-container label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            margin-top: 2rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Technician Registration</h2>
+        <form>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+            <label for="category">Service Category</label>
+            <select id="category">
+                <option>Electrical</option>
+                <option>Plumbing</option>
+                <option>Cleaning</option>
+                <option>Appliance Repair</option>
+                <option>Painting</option>
+                <option>Pest Control</option>
+            </select>
+
+            <label for="experience">Experience (in years)</label>
+            <input type="number" id="experience" placeholder="e.g., 3" required>
+
+            <label for="rate">Hourly Rate (₹)</label>
+            <input type="number" id="rate" placeholder="e.g., 500" required>
+
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

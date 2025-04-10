@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixHub - Appliance Repair Questions</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 700;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .modal-title {
+            color: #0066cc;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, 
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #0055aa;
+        }
+
+        /* Service card styles (for demo purposes) */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 20px;
+        }
+
+        .service-info h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sample service cards (simplified version) -->
+    <div class="service-grid">
+        <div class="service-card" id="appliance-repair">
+            <div class="service-img">
+                <img src="A.jpeg" alt="Appliance Repair">
+            </div>
+            <div class="service-info">
+                <h3>Appliance Repair</h3>
+                <p>Expert technicians for all home appliance repairs</p>
+            </div>
+        </div>
+        <!-- Other service cards would go here -->
+    </div>
+
+    <!-- Modal for appliance repair questions -->
+    <div class="modal-overlay" id="appliance-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Appliance Repair Questions</h2>
+                <button class="close-button" id="close-appliance-modal">&times;</button>
+            </div>
+            <form id="appliance-form">
+                <div class="form-group">
+                    <label for="appliance-type">Which appliance needs repair?</label>
+                    <select id="appliance-type" name="appliance-type" required>
+                        <option value="" disabled selected>Select an appliance</option>
+                        <option value="refrigerator">Refrigerator</option>
+                        <option value="washing-machine">Washing Machine</option>
+                        <option value="dishwasher">Dishwasher</option>
+                        <option value="microwave">Microwave</option>
+                        <option value="oven">Oven</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="issue-type">What issue are you facing with the appliance?</label>
+                    <select id="issue-type" name="issue-type" required>
+                        <option value="" disabled selected>Select an issue</option>
+                        <option value="not-working">Not Working</option>
+                        <option value="strange-sounds">Strange Sounds</option>
+                        <option value="leaking">Leaking</option>
+                        <option value="overheating">Overheating</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="emergency">Is this an emergency?</label>
+                    <select id="emergency" name="emergency" required>
+                        <option value="no">No, it can be scheduled</option>
+                        <option value="yes">Yes, I need immediate assistance</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Which symptoms are you noticing?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="symptom-strange-sounds" name="symptoms[]" value="strange-sounds">
+                            <label for="symptom-strange-sounds">Strange sounds from the appliance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="symptom-leaking" name="symptoms[]" value="leaking">
+                            <label for="symptom-leaking">Water leaking</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="symptom-heat" name="symptoms[]" value="heat">
+                            <label for="symptom-heat">Excessive heat</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Please describe the issue in detail:</label>
+                    <textarea id="description" name="description" placeholder="Provide as much detail as possible about the appliance issue..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="property-type">Property Type:</label>
+                    <select id="property-type" name="property-type" required>
+                        <option value="" disabled selected>Select property type</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="house">House</option>
+                        <option value="condo">Condominium</option>
+                        <option value="townhouse">Townhouse</option>
+                        <option value="commercial">Commercial Property</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferred-date">Preferred Service Date:</label>
+                    <input type="date" id="preferred-date" name="preferred-date" required>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get references to elements
+        const applianceCard = document.getElementById('appliance-repair');
+        const applianceModal = document.getElementById('appliance-modal');
+        const closeApplianceModal = document.getElementById('close-appliance-modal');
+        const applianceForm = document.getElementById('appliance-form');
+
+        // Event listener for clicking on the appliance repair card
+        applianceCard.addEventListener('click', function() {
+            applianceModal.style.display = 'flex';
+        });
+
+        // Event listener for closing the modal
+        closeApplianceModal.addEventListener('click', function() {
+            applianceModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target === applianceModal) {
+                applianceModal.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        applianceForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your request! Our appliance repair specialist will contact you soon.');
+            applianceModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

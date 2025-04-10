@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixHub - Painting Services Questions</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 700;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .modal-title {
+            color: #0066cc;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, 
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #0055aa;
+        }
+
+        /* Service card styles */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 20px;
+        }
+
+        .service-info h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Service card for Painting Services -->
+    <div class="service-grid">
+        <div class="service-card" id="painting-service">
+            <div class="service-img">
+                <img src="Paint.jpeg" alt="Painting Services">
+            </div>
+            <div class="service-info">
+                <h3>Painting Services</h3>
+                <p>Transform your space with our professional painters</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Painting Services Questions -->
+    <div class="modal-overlay" id="painting-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Painting Services Questions</h2>
+                <button class="close-button" id="close-painting-modal">&times;</button>
+            </div>
+            <form id="painting-form">
+                <div class="form-group">
+                    <label for="painting-area">Which area would you like to paint?</label>
+                    <select id="painting-area" name="painting-area" required>
+                        <option value="" disabled selected>Select an area</option>
+                        <option value="living-room">Living Room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bathroom">Bathroom</option>
+                        <option value="exterior">Exterior</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="paint-type">What type of paint do you prefer?</label>
+                    <select id="paint-type" name="paint-type" required>
+                        <option value="" disabled selected>Select paint type</option>
+                        <option value="matte">Matte</option>
+                        <option value="gloss">Gloss</option>
+                        <option value="satin">Satin</option>
+                        <option value="eggshell">Eggshell</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="surface-condition">What is the condition of the surface to be painted?</label>
+                    <select id="surface-condition" name="surface-condition" required>
+                        <option value="" disabled selected>Select condition</option>
+                        <option value="smooth">Smooth</option>
+                        <option value="rough">Rough</option>
+                        <option value="damaged">Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Would you like to include any additional services?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="service-cleaning" name="additional-services[]" value="cleaning">
+                            <label for="service-cleaning">Post-painting cleaning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="service-repair" name="additional-services[]" value="repair">
+                            <label for="service-repair">Surface repair before painting</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferred-date">Preferred Service Date:</label>
+                    <input type="date" id="preferred-date" name="preferred-date" required>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get references to elements for Painting Services
+        const paintingCard = document.getElementById('painting-service');
+        const paintingModal = document.getElementById('painting-modal');
+        const closePaintingModal = document.getElementById('close-painting-modal');
+        const paintingForm = document.getElementById('painting-form');
+
+        // Event listener for clicking on the painting service card
+        paintingCard.addEventListener('click', function() {
+            paintingModal.style.display = 'flex';
+        });
+
+        // Event listener for closing the modal
+        closePaintingModal.addEventListener('click', function() {
+            paintingModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target === paintingModal) {
+                paintingModal.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        paintingForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your request! Our painting specialists will contact you soon.');
+            paintingModal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
