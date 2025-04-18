@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixHub - Electrical Repair Services</title>
+  <style>
+    body {
+      background-color: #f7f9fc;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-container {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-header h2 {
+      color: #2c3e50;
+      font-size: 24px;
+    }
+
+    .modal-header p {
+      color: #7f8c8d;
+      font-size: 16px;
+    }
+
+    .question-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .success-message h3 {
+      color: #27ae60;
+    }
+
+    .back-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 350px;
+      margin: 20px auto;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .service-info {
+      padding: 20px;
+    }
+
+    .service-info h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .service-info p {
+      color: #7f8c8d;
+      font-size: 14px;
+    }.modal-container {
+    max-height: 90vh; /* Ensure the modal doesn't exceed the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.question-form {
+    max-height: 60vh; /* Limit the height of the form */
+    overflow-y: auto; /* Enable scrolling for the form */
+    padding-right: 10px; /* Add padding to avoid overlap with the scrollbar */
+}
+  </style>
+</head>
+<body>
+
+  <!-- Service card -->
+  <div class="service-card" id="electrical-card">
+    <div class="service-img">
+      <img src="e.jpeg" alt="Electrical Repair Services"/>
+    </div>
+    <div class="service-info">
+      <h3>Electrical Repair Services</h3>
+      <p>Get professional electrical repairs and installations for your home and office.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="electrical-modal">
+    <div class="modal-container">
+        <button class="close-button" id="close-modal">&times;</button>
+        <div class="modal-header">
+            <h2>Electrical Repair Service Request</h2>
+            <p>Please provide the following details</p>
+        </div>
+
+        <form class="question-form" id="electrical-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required placeholder="Enter your phone number" />
+            </div>
+            <div class="form-group">
+                <label for="issue">Issue Type</label>
+                <select id="issue" required>
+                    <option value="">-- Select Issue --</option>
+                    <option value="fuse">Fuse Box</option>
+                    <option value="wiring">Wiring</option>
+                    <option value="outlet">Outlet Repair</option>
+                    <option value="lighting">Lighting</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Issue Location</label>
+                <select id="location" required>
+                    <option value="">-- Select Location --</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="living-room">Living Room</option>
+                    <option value="office">Office</option>
+                    <option value="bedroom">Bedroom</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="preferred-date">Preferred Visit Date</label>
+                <input type="date" id="preferred-date" required />
+            </div>
+            <div class="form-group">
+                <label for="slot">Time Slot</label>
+                <select id="slot">
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Evening">Evening</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit Booking</button>
+        </form>
+
+        <div class="success-message" id="success-message">
+            <h3>Thank you!</h3>
+            <p>Your electrical repair service request has been submitted. We'll be in touch shortly.</p>
+            <button class="back-btn" id="back-btn">Back</button>
+        </div>
+    </div>
+</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.getElementById('electrical-card');
+      const modal = document.getElementById('electrical-modal');
+      const closeBtn = document.getElementById('close-modal');
+      const form = document.getElementById('electrical-form');
+      const success = document.getElementById('success-message');
+      const back = document.getElementById('back-btn');
+
+      card.addEventListener('click', () => modal.style.display = 'flex');
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        form.style.display = 'flex';
+        success.style.display = 'none';
+        form.reset();
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          form.style.display = 'flex';
+          success.style.display = 'none';
+          form.reset();
+        }
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {
+          name: document.getElementById('name').value,
+          phone: document.getElementById('phone').value,
+          issue: document.getElementById('issue').value,
+          location: document.getElementById('location').value,
+          date: document.getElementById('preferred-date').value
+        };
+
+        // Send to backend (you can enable this if backend is running)
+        /*
+        await fetch('http://localhost:3000/electrical-booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        */
+
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+
+      back.addEventListener('click', () => {
+        modal.style.display = 'none';
+        form.reset();
+        form.style.display = 'flex';
+        success.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Technician Recommendations</title>
+</head>
+<body>
+    <h2>Technicians for {{ service }} in {{ location }}</h2>
+
+    {% if technicians %}
+        {% for tech in technicians %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+                <h3>{{ tech.name }} ({{ tech.rating }}★)</h3>
+                <p>{{ tech.description }}</p>
+                <p><strong>Experience:</strong> {{ tech.experience_years }} years</p>
+                <p><strong>Hourly Rate:</strong> ${{ tech.hourly_rate }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No technicians found.</p>
+    {% endif %}
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

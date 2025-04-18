@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixHub - Home Services at Your Doorstep</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Fix<span>Hub</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="fixhubservices.html#services">Services</a></li>
+                <li><a href="fixhubservices.html#how-it-works">How it Works</a></li>
+                <li><a href="fixhubservices.html#about">About Us</a></li>
+                <li><a href="fixhubservices.html#contact">Contact</a></li>
+            </ul>
+            <a href="technician_register.html">
+                <button class="btn" style="margin-top:0">Register as Technician</button>
+            </a>
+            <a href="loginpage.html"><button class="btn" id="login-btn">Login / Sign Up</button></a>
+            <a href="#" id="logout-btn" style="display: none;"><button class="btn">Logout</button></a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Expert Home Services at Your Doorstep</h1>
+            <p>FixHub connects you with verified professionals for all your home service needs. Get quality service, guaranteed satisfaction.</p>
+
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f7f9fc;
+                    text-align: center;
+                    padding: 50px;
+                }
+                #serviceSearch {
+                    flex: 1;
+                    padding: 10px 30px;
+                    border: 2px solid #ccc;
+
+                    border-radius: 8px;
+                    font-size: 16px;
+                    box-shadow: 0 2px 8px  rgba(52, 152, 219, 0.7);
+                    transition: all 0.3s ease;
+                    outline: none;
+                }
+                #serviceSearch:focus {
+                    border-color: #296bcd;
+                    box-shadow: 0 0 12px rgba(52, 152, 219, 0.7);
+                }
+                .find-button {
+                    padding: 8px 10px;
+                    background-color: #3074da;
+                    color: white;
+                    border: none;
+                    font-size: 16px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                }
+                .find-button:hover {
+                    background-color: #000406;
+                }
+            </style>
+
+            <div class="search-container">
+                <input type="text" id="serviceSearch" placeholder="🔍 Search for technicians (e.g., Plumbing, Electrical, Painting)"/>
+                <button class="find-button" onclick="searchTechnicians()">Find Technicians</button>
+            </div>
+
+            <script>
+                function searchTechnicians() {
+                    const query = document.getElementById('serviceSearch').value.trim().toLowerCase();
+                    if (query === 'plumbing') {
+                        window.location.href = "Plumbing Services.html";
+                    } else if (query === 'home') {
+                        window.location.href = "Home Cleaning.html";
+                    } else if (query === 'painting') {
+                        window.location.href = "Painting Services.html";
+                    } else if (query === 'pest') {
+                        window.location.href = "Pest Control.html";
+                    } else if (query === 'appliance') {
+                        window.location.href = "Appliance Repair.html";
+                    } else if (query === 'electrical') {
+                        window.location.href = "electricalrepairs.html";
+                    } else {
+                        alert(`No specific category found for: ${query}. Try another search.`);
+                    }
+                }
+            </script>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="section-title">
+            <h2>Our Popular Services</h2>
+            <p>Choose from our wide range of professional home services</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <a href="Plumbing Services.html" class="card-link">
+                    <div class="service-img">
+                        <img src="p.jpeg" alt="Plumbing Services">
+                    </div>
+                    <div class="service-info">
+                        <h3>Plumbing Services</h3>
+                        <p>Expert plumbers to fix leaks, installations, and repairs</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="Home Cleaning.html" class="card-link">
+                    <div class="service-img">
+                        <img src="H.jpeg" alt="Home Cleaning">
+                    </div>
+                    <div class="service-info">
+                        <h3>Home Cleaning</h3>
+                        <p>Deep cleaning services for spotless living spaces</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="Appliance Repair.html" class="card-link">
+                    <div class="service-img">
+                        <img src="A.jpeg" alt="Appliance Repair">
+                    </div>
+                    <div class="service-info">
+                        <h3>Appliance Repair</h3>
+                        <p>Expert technicians for all home appliance repairs</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="Painting Services.html" class="card-link">
+                    <div class="service-img">
+                        <img src="Paint.jpeg" alt="Painting Services">
+                    </div>
+                    <div class="service-info">
+                        <h3>Painting Services</h3>
+                        <p>Transform your space with our professional painters</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+<br>
+        <div class="service-grid">
+            <div class="service-card">
+                <a href="Pest Control.html" class="card-link">
+                    <div class="service-img">
+                        <img src="Pest.jpeg" alt="Pest Control">
+                    </div>
+                    <div class="service-info">
+                        <h3>Pest Control</h3>
+                        <p>Effective and safe pest control solutions</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="electricalrepairs.html" class="card-link">
+                    <div class="service-img">
+                        <img src="e.jpeg" alt="Electrical Repairs">
+                    </div>
+                    <div class="service-info">
+                        <h3>Electrical Repairs</h3>
+                        <p>Professional electricians for all your electrical needs</p>
+                    </div>
+                </a>
+            </div>
+        
+        <div class="service-card">
+            <a href="Carpentry Services.html" class="card-link">
+                <div class="service-img">
+                    <img src="carpentry.jpeg" alt="Carpentry Services">
+                </div>
+                <div class="service-info">
+                    <h3>Carpentry Services</h3>
+                    <p>Skilled carpenters for furniture repairs, installations, and custom designs.</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="service-card">
+            <a href="acrepair.html" class="card-link">
+                <div class="service-img">
+                    <img src="acrepair.jpeg" alt="AC Repair Services">
+                </div>
+                <div class="service-info">
+                    <h3>AC Repair Services</h3>
+                    <p>Expert technicians for air conditioner repairs and maintenance.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-content">
+            <div class="section-title">
+                <h2>Why Choose FixHub</h2>
+                <p>Experience the FixHub difference with our trusted service professionals</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>Verified Professionals</h3>
+                    <p>All service providers undergo thorough background checks and skill verification</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏱</div>
+                    <h3>On-time Service</h3>
+                    <p>We value your time with punctual service appointments</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden costs or surprise charges after service completion</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>100% satisfaction guarantee on all our services</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Insured Services</h3>
+                    <p>All services are insured for your peace of mind</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>Easy Bookings</h3>
+                    <p>Book and manage appointments with just a few clicks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Join the FixHub Community</h2>
+            <p>Whether you're looking for reliable services or you're a skilled professional, FixHub is the platform for you.</p>
+            <div class="cta-buttons">
+                <a href="fixhubservices.html#services"><button class="btn btn-white">Book a Service</button></a>
+                <a href="technician_register.html"><button class="btn btn-outline">Become a Provider</button></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-logo">Fix<span>Hub</span></a>
+                <p>Connect with verified professionals for all your home service needs.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">ig</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How it Works</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>For Customers</h4>
+                <ul>
+                    <li><a href="#">Find Services</a></li>
+                    <li><a href="#">Service Guarantee</a></li>
+                    <li><a href="#">Customer Support</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>For Professionals</h4>
+                <ul>
+                    <li><a href="#">Join as Pro</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Pro Resources</a></li>
+                    <li><a href="#">Pro App</a></li>
+                    <li><a href="#">Pro Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FixHub. All rights reserved.</p>
+        </div>
+    </footer>
+ 
+<!-- Chatbot UI -->
+<div id="chatbot-container">
+    <div id="chatbot-header">
+        <h4>FixHub AI Bot</h4>
+        <button id="close-chatbot">×</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Type your message..." />
+        <button id="send-chatbot-message">Send</button>
+    </div>
+</div>
+<button id="chatbot-toggle">🤖</button>
+
+<style>
+    /* Chatbot Styles */
+    #chatbot-container {
+        display: none;
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 350px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+    }
+
+    #chatbot-header {
+        background-color: #3074da;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #chatbot-header h4 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    #chatbot-header button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    #chatbot-messages {
+        height: 300px;
+        overflow-y: auto;
+        padding: 12px;
+        background-color: #fff;
+    }
+    #chatbot-toggle {
+  transition: transform 0.3s ease;
+}
+
+#chatbot-toggle:hover {
+  transform: scale(1.15);
+}
+
+
+    #chatbot-messages div {
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        max-width: 70%;
+    }
+
+    #chatbot-messages .user-message {
+        background-color: #3074da;
+        color: white;
+        align-self: flex-end;
+        text-align: right;
+        margin-left: auto;
+    }
+
+    #chatbot-messages .bot-message {
+        background-color: #ecf0f1;
+        color: #2c3e50;
+        align-self: flex-start;
+        text-align: left;
+        margin-right: auto;
+    }
+
+    #chatbot-input-container {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    #send-chatbot-message {
+        background-color: #3074da;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-left: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+   
+    /* Chatbot Container Styling */
+#chatbot-container {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    background-color: #f9f9f9;
+    border: 2px solid #3074da; /* Add a border with a primary color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    z-index: 1000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Chatbot Header Styling */
+#chatbot-header {
+    background-color: #3074da;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd; /* Add a subtle divider */
+    border-top-left-radius: 15px; /* Match the rounded corners */
+    border-top-right-radius: 15px; /* Match the rounded corners */
+}
+
+/* Chatbot Messages Styling */
+#chatbot-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 12px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd; /* Add a subtle divider */
+}
+
+/* Chatbot Input Container Styling */
+#chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ddd; /* Add a subtle divider */
+    border-bottom-left-radius: 15px; /* Match the rounded corners */
+    border-bottom-right-radius: 15px; /* Match the rounded corners */
+}
+
+/* Chatbot Input Field */
+#chatbot-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#chatbot-input:focus {
+    border-color: #3074da; /* Highlight border on focus */
+}
+
+/* Chatbot Send Button */
+#send-chatbot-message {
+    background-color: #3074da;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#send-chatbot-message:hover {
+    background-color: #296bcd; /* Darker shade on hover */
+}
+
+/* Chatbot Toggle Button */
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3074da;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#chatbot-toggle:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    background-color: #296bcd; /* Darker shade on hover */
+}
+
+    /* Typing Indicator */
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .typing-indicator span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+        background-color: #7f8c8d;
+        border-radius: 50%;
+        animation: typing 1.5s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0%, 80%, 100% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 1;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const sendChatbotMessage = document.getElementById('send-chatbot-message');
+
+        // Predefined bot responses
+        const responses = {
+            hi: "Hi there! How can I help you?",
+            hello: "Hello! How can I assist you today?",
+            hey: "Hey! What can I do for you?",
+            greetings: "Greetings! How can I assist you?",
+            services: "We offer Plumbing, Home Cleaning, Appliance Repair, Painting, Pest Control, and Electrical Repairs.",
+            plumbing: "Our plumbing services include fixing leaks, installations, and repairs. Would you like to book a service?",
+            cleaning: "We provide deep cleaning services for homes and offices. Would you like to know more?",
+            painting: "Our professional painters can transform your space. Would you like to schedule a consultation?",
+            pest: "We offer effective pest control solutions. What type of pest issue are you facing?",
+            appliance: "We repair appliances like fridges, washing machines, and more. What appliance needs repair?",
+            electrical: "Our electricians can handle wiring, outlets, and more. How can we assist you?",
+            contact: "You can contact us at support@fixhub.com or call us at +1-800-555-1234.",
+            thanks: "You're welcome! Let me know if there's anything else I can help with.",
+            bye: "Goodbye! Have a great day!",
+            thank_you: "Thank you for reaching out!",
+            location: "We provide services in various locations including New York",
+            avilable: "We have service providers available in your area. Would you like to book a service?",
+            notavailable: "I'm sorry, we currently don't have service providers in your area. Please check back later.",
+            howmuch: "Our prices",
+            yes: "Great! i will help you with that",
+            no: "Okay, let me know if you need anything else.",
+            help: "I'm here to help! What do you need assistance with?",
+            time: "We are available 24/7. You can book a service at your convenience.",
+            default: "I'm sorry, I didn't understand that. Can you rephrase?",
+            
+        };
+
+        // Keywords for dynamic matching
+        const keywords = {
+            plumber: "It seems you need a plumber. We can help with leaks, installations, and repairs. Would you like to book a service?",
+            electrician: "Looking for an electrician? We can assist with wiring, outlets, and more. Would you like to schedule a visit?",
+            "pest control": "We offer effective pest control solutions. What type of pest issue are you facing?",
+            painting: "Our professional painters can transform your space. Would you like to schedule a consultation?",
+            appliance: "We repair appliances like fridges, washing machines, and more. What appliance needs repair?",
+            cleaning: "We provide deep cleaning services for homes and offices. Would you like to know more?",
+            near: "Could you provide your location so we can find the nearest service provider for you?",
+            name: "I am FixHub AI Bot, here to assist you with your home service needs."
+        };
+
+        // Location-based responses
+        const locations = {
+            "new york": "We have service providers available in New York. Would you like to book a service?",
+            "los angeles": "We offer services in Los Angeles. How can we assist you?",
+            "chicago": "Our professionals are available in Chicago. What service do you need?",
+            "houston": "We provide services in Houston. Would you like to schedule a visit?",
+            "san francisco": "We have experts in San Francisco. How can we help you?",
+            "hyderabad": "We have service providers available in Hyderabad. Would you like to book a service?",
+            "bangalore": "We offer services in Bangalore. How can we assist you?",
+            "mumbai": "Our professionals are available in Mumbai. What service do you need?",
+            'delhi': "We provide services in Delhi. Would you like to schedule a visit?",
+            "chennai": "We have experts in Chennai. How can we help you?",
+            "pune": "We have service providers available in Pune. Would you like to book a service?",
+            "kolkata": "We offer services in Kolkata. How can we assist you?",
+            "jaipur": "Our professionals are available in Jaipur. What service do you need?",
+            "ahmedabad": "We provide services in Ahmedabad. Would you like to schedule a visit?",
+            "suryapet": "We have experts in Suryapet. How can we help you?",
+            "warangal": "We have service providers available in Warangal. Would you like to book a service?",
+            "nalgonda": "We offer services in Nalgonda. How can we assist you?",
+            "khammam": "Our professionals are available in Khammam. What service do you need?",
+            "nizamabad": "We provide services in Nizamabad. Would you like to schedule a visit?",
+            "karimnagar": "We have experts in Karimnagar. How can we help you?",
+            "adilabad": "We have service providers available in Adilabad. Would you like to book a service?",
+        };
+
+        // Event listeners
+        chatbotToggle.addEventListener('click', openChatbot);
+        closeChatbot.addEventListener('click', closeChatbotHandler);
+        sendChatbotMessage.addEventListener('click', handleUserMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleUserMessage();
+        });
+
+        // Open chatbot and send initial message
+        function openChatbot() {
+            chatbotContainer.style.display = 'block';
+            chatbotToggle.style.display = 'none';
+            if (!chatbotMessages.hasChildNodes()) sendMessage('bot', "Hello! Welcome to FixHub. How can I assist you today?");
+        }
+
+        // Close chatbot
+        function closeChatbotHandler() {
+            chatbotContainer.style.display = 'none';
+            chatbotToggle.style.display = 'block';
+        }
+
+        // Handle user message
+        function handleUserMessage() {
+            const userMessage = chatbotInput.value.trim().toLowerCase();
+            if (!userMessage) return;
+
+            sendMessage('user', userMessage);
+            chatbotInput.value = '';
+            showTypingIndicator();
+            setTimeout(() => {
+                const botResponse = getBotResponse(userMessage);
+                sendMessage('bot', botResponse);
+            }, 1500); // Simulate typing delay
+        }
+
+        // Get bot response
+        function getBotResponse(userMessage) {
+            // Check for location matches
+            for (const location in locations) {
+                if (userMessage.includes(location)) {
+                    return locations[location];
+                }
+            }
+
+            // Check for keyword matches
+            for (const keyword in keywords) {
+                if (userMessage.includes(keyword)) {
+                    return keywords[keyword];
+                }
+            }
+
+            // Default response if no keyword or location matches
+            return responses[userMessage] || responses.default;
+        }
+
+        // Send a message to the chat
+        function sendMessage(sender, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${sender}-message`;
+            messageDiv.textContent = message;
+            chatbotMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            chatbotMessages.appendChild(typingDiv);
+            scrollToBottom();
+
+            setTimeout(() => typingDiv.remove(), 1500);
+        }
+
+        // Scroll to the bottom of the chat
+        function scrollToBottom() {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    });
+</script>
+</body>
+</html>

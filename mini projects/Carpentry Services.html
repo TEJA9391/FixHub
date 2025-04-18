@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixHub - Carpentry Services</title>
+  <style>
+    /* Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f7f9fc;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-container {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .modal-header p {
+      color: #7f8c8d;
+    }
+
+    .question-form {
+      display: flex;
+      flex-direction: column;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn, .back-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover, .back-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 350px;
+      margin: 20px auto;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .service-info {
+      padding: 20px;
+    }
+
+    .service-info h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .service-info p {
+      color: #7f8c8d;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .success-message h3 {
+      color: #27ae60;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Carpentry Service Card -->
+  <div class="service-card" id="carpentry-card">
+    <div class="service-img">
+      <img src="carpentry.jpeg" alt="Carpentry Service" />
+    </div>
+    <div class="service-info">
+      <h3>Carpentry Services</h3>
+      <p>Expert woodwork and furniture services for your home</p>
+    </div>
+  </div>
+
+  <!-- Carpentry Modal -->
+  <div class="modal-overlay" id="carpentry-modal">
+    <div class="modal-container">
+      <button class="close-button" id="close-carpentry-modal">&times;</button>
+      <div class="modal-header">
+        <h2>Carpentry Services</h2>
+        <p>Tell us your requirements and get expert carpenter support</p>
+      </div>
+      <form class="question-form" id="carpentry-form">
+        <div class="form-group">
+          <label for="carp-name">Your Name</label>
+          <input type="text" id="carp-name" required />
+        </div>
+        <div class="form-group">
+          <label for="carp-phone">Phone Number</label>
+          <input type="tel" id="carp-phone" />
+        </div>
+        <div class="form-group">
+          <label for="carp-service">Type of Carpentry Work</label>
+          <select id="carp-service" required>
+            <option value="">-- Select Work Type --</option>
+            <option value="furniture">Furniture Making</option>
+            <option value="repair">Wood Repair</option>
+            <option value="installation">Fixture Installation</option>
+            <option value="custom">Custom Woodwork</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="carp-location">Location</label>
+          <input type="text" id="carp-location" placeholder="Area/City"/>
+        </div>
+        <div class="form-group">
+          <label for="carp-details">Describe Your Need</label>
+          <textarea id="carp-details" required placeholder="Tell us what you want done..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </form>
+      <div class="success-message" id="carpentry-success">
+        <h3>Thank You!</h3>
+        <p>Your carpentry service request has been submitted. We'll reach out soon!</p>
+        <button class="back-btn" id="carp-back-btn">Back to Services</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const card = document.getElementById("carpentry-card");
+      const modal = document.getElementById("carpentry-modal");
+      const closeBtn = document.getElementById("close-carpentry-modal");
+      const form = document.getElementById("carpentry-form");
+      const success = document.getElementById("carpentry-success");
+      const backBtn = document.getElementById("carp-back-btn");
+
+      card.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        form.style.display = "flex";
+        success.style.display = "none";
+        form.reset();
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          form.style.display = "flex";
+          success.style.display = "none";
+          form.reset();
+        }
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.style.display = "none";
+        success.style.display = "block";
+
+        console.log("Carpentry Form Data:", {
+          name: document.getElementById("carp-name").value,
+          phone: document.getElementById("carp-phone").value,
+          service: document.getElementById("carp-service").value,
+          location: document.getElementById("carp-location").value,
+          details: document.getElementById("carp-details").value
+        });
+      });
+
+      backBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+        form.style.display = "flex";
+        success.style.display = "none";
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

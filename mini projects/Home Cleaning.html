@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixHub - Home Cleaning Questions</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-container {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #555;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-header h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .modal-header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        /* Form styles */
+        .question-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Service card styles - just for the example */
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-info {
+            padding: 20px;
+        }
+        
+        .service-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .service-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        /* Success message styles */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .success-message h3 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            margin-bottom: 20px;
+        }
+        
+        .back-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }.modal-container {
+    max-height: 90vh; /* Ensure the modal doesn't exceed the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.question-form {
+    max-height: 60vh; /* Limit the height of the form */
+    overflow-y: auto; /* Enable scrolling for the form */
+    padding-right: 10px; /* Add padding to avoid overlap with the scrollbar */
+}
+
+        
+        
+    </style>
+</head>
+<body>
+    <!-- Example Home Cleaning Service Card (for demonstration) -->
+    <div class="service-card" id="home-cleaning-card">
+        <div class="service-img">
+            <img src="H.jpeg" alt="Home Cleaning">
+        </div>
+        <div class="service-info">
+            <h3>Home Cleaning</h3>
+            <p>Deep cleaning services for spotless living spaces</p>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="cleaning-modal">
+        <div class="modal-container">
+            <button class="close-button" id="close-modal">&times;</button>
+            <div class="modal-header">
+                <h2>Home Cleaning Services</h2>
+                <p>Ask us anything about our professional cleaning services</p>
+            </div>
+    
+            <form class="question-form" id="cleaning-question-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="service-type">Cleaning Service Type</label>
+                    <select id="service-type" name="service-type" required>
+                        <option value="">-- Select Service Type --</option>
+                        <option value="deep-cleaning">Deep Cleaning</option>
+                        <option value="regular-cleaning">Regular Cleaning</option>
+                        <option value="move-in-out">Move In/Out Cleaning</option>
+                        <option value="office-cleaning">Office Cleaning</option>
+                        <option value="carpet-cleaning">Carpet Cleaning</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="property-size">Property Size</label>
+                    <select id="property-size" name="property-size" required>
+                        <option value="">-- Select Property Size --</option>
+                        <option value="studio">Studio</option>
+                        <option value="1bhk">1 BHK</option>
+                        <option value="2bhk">2 BHK</option>
+                        <option value="3bhk">3 BHK</option>
+                        <option value="4bhk">4+ BHK</option>
+                        <option value="office">Office Space</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="slot">Preferred Time Slot</label>
+                    <select id="slot" name="slot" required>
+                        <option value="">-- Select Time --</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="questions">Your Questions or Requirements</label>
+                    <textarea id="questions" name="questions" placeholder="Please tell us about your specific cleaning needs or any questions you have..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Question</button>
+            </form>
+    
+            <div class="success-message" id="success-message">
+                <h3>Thank You!</h3>
+                <p>We've received your inquiry about our Home Cleaning services. A FixHub representative will contact you shortly with answers to your questions.</p>
+                <button class="back-btn" id="back-btn">Back to Services</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const cleaningCard = document.getElementById('home-cleaning-card');
+            const modal = document.getElementById('cleaning-modal');
+            const closeBtn = document.getElementById('close-modal');
+            const form = document.getElementById('cleaning-question-form');
+            const successMessage = document.getElementById('success-message');
+            const backBtn = document.getElementById('back-btn');
+            
+            // Open modal when clicking on the home cleaning card
+            cleaningCard.addEventListener('click', function() {
+                modal.style.display = 'flex';
+            });
+            
+            // Close modal when clicking the close button
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                // Reset form and hide success message when closing
+                form.style.display = 'flex';
+                successMessage.style.display = 'none';
+                form.reset();
+            });
+            
+            // Close modal when clicking outside the modal content
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    // Reset form and hide success message when closing
+                    form.style.display = 'flex';
+                    successMessage.style.display = 'none';
+                    form.reset();
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Hide the form and show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // In a real implementation, you would send the form data to a server here
+                console.log('Form submitted with data:', {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    serviceType: document.getElementById('service-type').value,
+                    propertySize: document.getElementById('property-size').value,
+                    questions: document.getElementById('questions').value
+                });
+            });
+            
+            // Back button in success message
+            backBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                // Reset and show form for next time
+                form.style.display = 'flex';
+                successMessage.style.display = 'none';
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

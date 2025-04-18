@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FixHub - AC Repair Services</title>
+  <style>
+    /* Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f7f9fc;
+      padding: 20px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-container {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .modal-header p {
+      color: #7f8c8d;
+    }
+
+    .question-form {
+      display: flex;
+      flex-direction: column;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn, .back-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover, .back-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 350px;
+      margin: 20px auto;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .service-info {
+      padding: 20px;
+    }
+
+    .service-info h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .service-info p {
+      color: #7f8c8d;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .success-message h3 {
+      color: #27ae60;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AC Repair Service Card -->
+  <div class="service-card" id="acrepair-card">
+    <div class="service-img">
+      <img src="acrepair.jpeg" alt="AC Repair Service" />
+    </div>
+    <div class="service-info">
+      <h3>AC Repair</h3>
+      <p>Expert AC servicing and repair to keep your home cool</p>
+    </div>
+  </div>
+
+  <!-- AC Repair Modal -->
+  <div class="modal-overlay" id="acrepair-modal">
+    <div class="modal-container">
+      <button class="close-button" id="close-acrepair-modal">&times;</button>
+      <div class="modal-header">
+        <h2>AC Repair Services</h2>
+        <p>Tell us your issue and get reliable AC repair service</p>
+      </div>
+      <form class="question-form" id="acrepair-form">
+        <div class="form-group">
+          <label for="ac-name">Your Name</label>
+          <input type="text" id="ac-name" required />
+        </div>
+        <div class="form-group">
+          <label for="ac-phone">Phone Number</label>
+          <input type="tel" id="ac-phone" />
+        </div>
+        <div class="form-group">
+          <label for="ac-type">Type of AC</label>
+          <select id="ac-type" required>
+            <option value="">-- Select AC Type --</option>
+            <option value="window">Window AC</option>
+            <option value="split">Split AC</option>
+            <option value="central">Central AC</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ac-location">Location</label>
+          <input type="text" id="ac-location" placeholder="Area/City" />
+        </div>
+        <div class="form-group">
+          <label for="ac-issue">Describe Your Issue</label>
+          <textarea id="ac-issue" required placeholder="Tell us what's wrong with your AC..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </form>
+      <div class="success-message" id="acrepair-success">
+        <h3>Thank You!</h3>
+        <p>Your AC repair request has been submitted. We'll reach out soon!</p>
+        <button class="back-btn" id="ac-back-btn">Back to Services</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const acCard = document.getElementById("acrepair-card");
+      const acModal = document.getElementById("acrepair-modal");
+      const acCloseBtn = document.getElementById("close-acrepair-modal");
+      const acForm = document.getElementById("acrepair-form");
+      const acSuccess = document.getElementById("acrepair-success");
+      const acBackBtn = document.getElementById("ac-back-btn");
+
+      acCard.addEventListener("click", () => {
+        acModal.style.display = "flex";
+      });
+
+      acCloseBtn.addEventListener("click", () => {
+        acModal.style.display = "none";
+        acForm.style.display = "flex";
+        acSuccess.style.display = "none";
+        acForm.reset();
+      });
+
+      acModal.addEventListener("click", (e) => {
+        if (e.target === acModal) {
+          acModal.style.display = "none";
+          acForm.style.display = "flex";
+          acSuccess.style.display = "none";
+          acForm.reset();
+        }
+      });
+
+      acForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        acForm.style.display = "none";
+        acSuccess.style.display = "block";
+
+        console.log("AC Repair Form Data:", {
+          name: document.getElementById("ac-name").value,
+          phone: document.getElementById("ac-phone").value,
+          acType: document.getElementById("ac-type").value,
+          location: document.getElementById("ac-location").value,
+          issue: document.getElementById("ac-issue").value
+        });
+      });
+
+      acBackBtn.addEventListener("click", function () {
+        acModal.style.display = "none";
+        acForm.style.display = "flex";
+        acSuccess.style.display = "none";
+        acForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>
