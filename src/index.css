@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+
+    --primary: 158 95% 18%; /* Deep Forest Green */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 158 95% 97%;
+    --secondary-foreground: 158 95% 10%;
+
+    --accent: 158 95% 40%; /* Vibrant Emerald */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 158 95% 18%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#F7F7F7] text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-xl border border-black/5 shadow-xl rounded-[1.5rem] transition-all duration-500;
+  }
+
+  .glass-card:hover {
+    @apply border-primary/20 bg-white/80 -translate-y-1 shadow-2xl;
+  }
+
+  .glass-pill {
+    @apply bg-white/90 backdrop-blur-xl border border-black/5 shadow-lg rounded-full transition-all duration-500;
+  }
+
+  .glass-pill-item {
+    @apply px-6 py-2 rounded-full transition-all duration-300 font-bold text-sm;
+  }
+
+  .glass-pill-item-active {
+    @apply bg-white/10 text-white shadow-lg;
+  }
+
+  .apple-button {
+    @apply relative px-8 py-4 rounded-3xl font-bold transition-all duration-300 
+           active:scale-95 flex items-center justify-center gap-3 overflow-hidden;
+  }
+
+  .neon-button {
+    @apply apple-button bg-primary text-primary-foreground hover:shadow-neon hover:shadow-primary/40;
+  }
+
+  .secondary-button {
+    @apply apple-button bg-white/5 border border-white/10 hover:bg-white/10 text-white;
+  }
+
+  .cyber-input {
+    @apply w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 
+           focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 
+           transition-all duration-500 placeholder:text-muted-foreground/50;
+  }
+
+  .neumorphic-button {
+    @apply bg-background shadow-neumorphic-light dark:shadow-neumorphic-dark rounded-3xl p-6 
+           active:shadow-inner transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-cyber-gradient font-black tracking-tighter;
+  }
+}
+
+/* Apple-style spring animations */
+.spring-up {
+  animation: spring-up 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes spring-up {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Hide Scrollbar Utility */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Page Transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
